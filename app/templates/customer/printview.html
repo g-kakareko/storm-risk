@@ -1,0 +1,128 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Dashboard Customer
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<style type="text/css">
+  .footer-storm {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:10%;
+   width:100%;
+   background: black;
+   color: white;
+   font: italic bold 12px/15px Georgia, serif;
+}
+
+   .footer-content{
+   	position: absolute;
+  	bottom: 0;
+  	left: 0;
+   }
+</style>
+{% endblock %}
+
+{%block content%}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">storm-risk</a>
+        </div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{ url_for('mod_auth.dashboardcustomer') }}">New Appraisal</a>
+        </div>
+      </div>
+</nav>
+<div class="container-fluid" style="margin-top: 50px">
+<div class="row">
+	<div class="col-md-6" style="text-align: center;">               
+		<img class = "logo" src="{{ url_for('static', filename='logo.jpg') }}" width="100%" height="100%">
+	</div>
+	<div class="col-md-6" style="text-align: center;"> 
+		<h1>Storm-Risk Report</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+	{{ div_placeholder }}
+	</div>
+	<div class="col-md-6">
+		<h4> storm-risk estimated your original house value on {{value}}<br> based on your location and other details provided</h4>
+		<table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>Category</th>
+		        <th>Estimated Damage</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>Tropical Storm</td>
+		        <td>{{damage_trop}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category I</td>
+		        <td>{{damage_c1}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category II</td>
+		        <td>{{damage_c2}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category III</td>
+		        <td>{{damage_c3}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category IV</td>
+		        <td>{{damage_c4}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category V</td>
+		        <td>{{damage_c5}}</td>
+		      </tr>
+		    </tbody>
+  		</table>
+
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>Category</th>
+		        <th>Description</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>Class One</td>
+		        <td>Class One is ...</td>
+		      </tr>
+		      <tr>
+		        <td>Class Two</td>
+		        <td>Class One is ...</td>
+		      </tr>
+		      <tr>
+		        <td>Class Three</td>
+		        <td>Class One is ...</td>
+		      </tr>
+		      <tr>
+		        <td>Class Four</td>
+		        <td>Class One is ...</td>
+		      </tr>
+		      
+		    </tbody>
+  	</table>
+	</div>
+	<div class="col-md-6" style="text-align: center;">
+		<p> Storm-Risk gave your house class {{srating}}</p>
+	</div>
+</div>
+</div>
+</div>
+{% endblock %}

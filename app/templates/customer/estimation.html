@@ -1,0 +1,159 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Report
+{% endblock %}
+{% block styles %}
+{{super()}}
+<style type="text/css">
+  .footer-storm {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:10%;
+   width:100%;
+   background: black;
+   color: white;
+   font: italic bold 12px/15px Georgia, serif;
+}
+
+   .footer-content{
+   	position: absolute;
+  	bottom: 0;
+  	left: 0;
+   }
+</style>
+{% endblock %}
+
+{%block content%}
+<script type="text/javascript" src="{{ url_for('static', filename='storm.js') }}"></script>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">storm-risk</a>
+        </div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{{ url_for('mod_auth.dashboardcustomer') }}">New Appraisal</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('mod_auth.logout') }}">Log Out</a></li>
+           
+
+          </ul>
+        </div>
+      </div>
+</nav>
+<div class="container-fluid">
+<div class="row" style="margin-top: 50px">
+	<div class="col-md-6" style="text-align: center;">
+	<p>Estimated ($ Loss)</p>
+	{{ div_placeholder }}
+	<p> Wind Speed mph </p>
+	</div>
+	<div class="col-md-6">
+		<h4> storm-risk estimated your original house value on ${{value}}<br> based on your location and other details provided</h4>
+		<table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>Category</th>
+		        <th>Estimated Damage</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td>Tropical Storm</td>
+		        <td>${{dollar_damage[0]}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category I</td>
+		        <td>${{dollar_damage[1]}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category II</td>
+
+		        <td>${{dollar_damage[2]}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category III</td>
+		        <td>${{dollar_damage[3]}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category IV</td>
+		        <td>${{dollar_damage[4]}}</td>
+		      </tr>
+		      <tr>
+		        <td>Category V</td>
+		        <td>${{dollar_damage[5]}}</td>
+		      </tr>
+		    </tbody>
+  		</table>
+
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+		<table class="table table-striped">
+		    <thead>
+		      <tr>
+		        <th>Category</th>
+		        <th>Description</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td><img src="{{ url_for('static', filename='one.png') }}" width="50px" height="45px" alt=""></td>
+		        <td>Rating of one means no damage or very minor damage for hurricane category 4,<br>
+		         No broken windows, minimal roof damage, very limited water penetration.</td>
+		      </tr>
+		      <tr>
+		        <td><img src="{{ url_for('static', filename='two.png') }}" width="50px" height="45px" alt=""></td>
+		        <td>Rating of two means minor damage for hurricane of category 3 or 4. Moderate roof cover loss, walls and roof renovations like painting or patching repair may be required.</td>
+		      </tr>
+		      <tr>
+		        <td><img src="{{ url_for('static', filename='three.png') }}" width="50px" height="45px" alt=""></td>
+		        <td>Rating of three means moderate or severe damage for hurricane of category 2 or 3. <br>
+		        Major roof cover damage with resulting damage to the interior of the building from the water.</td>
+		      </tr>
+		      <tr>
+		        <td><img src="{{ url_for('static', filename='four.png') }}" width="50px" height="45px" alt=""></td>
+		        <td>Rating of four means severe damage or destruction for hurricane of category 2 or 3. Major roof cover loss, complete roof failure possibe.</td>
+		      </tr>
+		      
+		    </tbody>
+  	</table>
+	</div>
+	<div class="col-md-6" style="text-align: center; font: 25">
+		<h2>Storm-Risk Rating: </h2>
+		{% if rate == 1 %}
+		<img src="{{ url_for('static', filename='one.png') }}" width="50px" height="45px" alt="">
+		<h3><b>Congratulation! Your home received category 1 in storm-risk scale, which is the highest possible rating. <br> You are hurricane proof!!! </b></h3>
+		{% elif rate == 2 %}
+		<img src="{{ url_for('static', filename='two.png') }}" width="50px" height="45px" alt="">
+		<h3><b>Almost there. Your home can sustain quite serious hurricane event, but a small investment can make it hurricane proof and undestructible.</b></h3>
+		{% elif rate == 3 %}
+		<img src="{{ url_for('static', filename='three.png') }}" width="50px" height="45px" alt="">
+		<h3><b>Danger! You received category 3 in storm-risk rating. Your is vulnerable for severe damages during even Category 2 hurricane. Consider an investment in your safety.</b></h3>
+		{% else %}
+		<img src="{{ url_for('static', filename='four.png') }}" width="50px" height="45px" alt="">
+		<h3><b>Unfortunately, your home did not pass our test. Consider a serious investment in window protection, roof renovation or roof to wall connections.</b></h3>
+		{% endif %}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-6">
+	
+	</div>
+	<div class="col-md-6" >
+		<div class="btn-group-vertical" style="width: 100%" >
+  		<a href="{{ url_for('mod_auth.mitigation') }}">
+  		<button type="button" class="btn btn-primary btn-lg btn-block" style="margin-top: 20px">Mitigate Damage
+  		</button></a>
+		<button type="button" class="btn btn-success btn-lg btn-block" value="Print this page" onclick="printPage()" style="margin-top: 20px">Save Report</button>
+		</div>
+
+	</div>
+</div>
+</div>
+</div>
+{% endblock %}

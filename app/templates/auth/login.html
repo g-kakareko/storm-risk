@@ -1,0 +1,85 @@
+<!-- Author Daniel Bis -->
+
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="../../static/signin.css">
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+	body{
+		position: absolute;
+	    min-height:90%;
+	    width: 100%;
+	    height: auto;
+	    top: 0;
+	    left: 0;
+		background: url({{url_for("static" , filename="loginback.jpg")}});
+	  	-webkit-background-size: cover; /* Add in these */
+	    -moz-background-size: cover;    /* four lines to */
+	    -o-background-size: cover;      /* remove the white space*/
+	    background-size: cover;         /* around images */
+	    color: white;
+  }
+  .footer-storm {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:10%;
+   width:100%;
+   background: black;
+   color: white;
+   font: italic bold 12px/15px Georgia, serif;
+}
+
+   .footer-content{
+   	position: absolute;
+  	bottom: 0;
+  	left: 0;
+   }
+</style>
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+        <img src="{{ url_for('static', filename='logo.jpg') }}" width="50" height="45" class="d-inline-block align-top" alt="">
+      </a>
+      <p class="navbar-brand"> <b>Storm-Risk </b>Your tool to estimate and mitigate your house damage</p>
+        
+      </div>
+</nav>
+
+    <div class="container" style="text-align: center;">
+
+      <form class="form-signin" method="POST" action="/auth/login">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.email) }}
+        {{ wtf.form_field(form.password) }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+      <div class= "center-block" style="width: 300px; text-align:center;">
+      
+	      <a href="{{ url_for('mod_auth.signup') }}"><button class="btn btn-lg btn-success btn-block" style="display: block; margin: 0 auto;" type="button">Create Account</button></a> <br>
+	      <form method="POST" action="/auth/loginguest">
+	      <button class="btn btn-lg btn-success btn-block" style="display: block; margin: 0 auto; type="submit" name= "guest" value="guest"> Continue as a Guest</button> 
+	      </form>
+	   
+	   </div>
+
+    </div> 
+
+<footer class="footer-storm">
+<p class="footer-content">&copy; PolHack <br> Created by Daniel Bis and Grzegorz Kakareko as a HackFSU 2018 project.<br> danbisoffice@gmail.com, g.kakareko@gmail.com <br>
+</p>
+</footer>
+{% endblock %}
+
+
+

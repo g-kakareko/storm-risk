@@ -1,0 +1,99 @@
+<!-- Author Daniel Bis -->
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<style type="text/css">
+  .footer-storm {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:10%;
+   width:100%;
+   background: black;
+   color: white;
+   font: italic bold 12px/15px Georgia, serif;
+}
+
+   .footer-content{
+   	position: absolute;
+  	bottom: 0;
+  	left: 0;
+   }
+  .logo {
+    position: relative;,
+    top: 0;
+    left: 0;
+  }
+  body {
+    background-color: white; 
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #fff !important;
+    font-size: 16px;
+
+  }
+
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">storm-risk</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{ url_for('mod_auth.logout') }}">Log Out</a></li>
+           
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid" style="color: black;">
+      <div class="row" style="margin-top: 60px">
+        <div class="col-md-6" style = "text-align: center; margin-top: 20px background-color: black">
+          
+          <div class="row" style="margin-top: 40px">
+          <div class="col-md-4" style="text-align: left;"> 
+              <img class = "logo" src="{{ url_for('static', filename='logo.jpg') }}" width="100%" height="100%">
+          </div>
+          <div class="col-md-8" style="margin-top: 60px;">
+            <p > We are here to prevent, not respond. Don't let hurricane suprise you, check your potential loses, find vulnerabilities and fix them. <br> Protect your home and family.</p>
+          </div>
+          </div>
+      </div>
+
+
+        <div class="col-md-6" style = "text-align: left; background: #fff margin-left: 0" >
+            <form class="form-appraisal" method="POST", action="/auth/mitigation">
+            <h2 class="form-appraisal-heading">Select Improvements</h2>
+            {{ form.hidden_tag() }}
+            {{ wtf.form_field(form.window_protection) }}
+            {{ wtf.form_field(form.type_of_windows) }}
+            {{ wtf.form_field(form.roof_wall_connection) }}
+            {{ wtf.form_field(form.type_of_roof_cover) }}
+            {{ wtf.form_field(form.type_of_roof_sheathing) }}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Upgrade</button>
+            </form>
+        </div>
+        
+    </div>
+    
+    </div>
+
+
+
+<footer class="footer-storm">
+<p class="footer-content">&copy; PolHack <br> Created by Daniel Bis and Grzegorz Kakareko as a HackFSU 2018 project.<br> danbisoffice@gmail.com, g.kakareko@gmail.com <br>
+</p>
+</footer>
+{% endblock %}

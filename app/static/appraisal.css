@@ -1,0 +1,44 @@
+.container-fluid {
+  color: black;
+  margin-left: 40px !important;
+  margin-right: 40px !important;
+  text-align: center;
+  width: 100%;
+  background-color: #fff !important;
+}
+.form-appraisal {
+  min-width: 50%
+  max-width: 50%;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: #fff !important;
+}
+
+.form-appraisal .form-appraisal-heading,
+.form-appraisal .checkbox {
+  margin-bottom: 10px;
+}
+.form-appraisal .checkbox {
+  font-weight: normal;
+}
+.form-appraisal .form-control {
+  position: relative;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-appraisal .form-control:focus {
+  z-index: 2;
+}
+.form-appraisal input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-appraisal input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
